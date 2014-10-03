@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.raphaelborborema.model.MobilePhone">
+		<field name="id" type="long" />
+		<field name="name" type="String" />
+		<field name="brand" type="String" />
+		<field name="description" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="releaseDate" type="Date" />
+		<field name="price" type="double" />
+	</model>
+</model-hints>

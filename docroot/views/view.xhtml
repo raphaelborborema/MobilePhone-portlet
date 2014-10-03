@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head />
+	<h:body>
+		<f:view locale="en_US"/>
+		<h:form id="frmId">
+			<p:messages autoUpdate="true" id="messagesId" />
+			<p:outputLabel value="#{i18n['mobilephone_list_title']}"  styleClass="title_box"   ></p:outputLabel>
+			<br style="clear: both;" />
+			
+			<p:dataTable lazy="true" var="phone" value="#{phoneBean.model}"
+				paginator="true" rows="10"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10,50,100">
+
+				<p:column  filterBy="#{phone.name}">
+					<f:facet name="header">
+						<h:outputText value="#{i18n['mobilephone_list_field_name']}" />
+					</f:facet>
+					<h:outputText value="#{phone.name}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{i18n['mobilephone_list_field_brand']}" />
+					</f:facet>
+					<h:outputText value="#{phone.brand}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{i18n['mobilephone_list_field_price']}"  />
+					</f:facet>
+					<h:outputText converter="moneyConverter" value="#{phone.price}" />
+				</p:column>
+				<p:column style="width:100px;">
+					<f:facet name="header">
+						<h:outputText value="#{i18n['mobilephone_list_label_action']}" />
+					</f:facet>
+					<p:commandButton action="#{phoneViewMB.editPhone}" icon="ui-icon-pencil"
+						title="#{i18n['mobilephone_list_button_edit']}">
+						<f:param name="action" value="UPDATE" />
+						<f:param name="id" value="#{phone.id}" />
+					</p:commandButton>
+
+					<p:commandButton action="#{phoneViewMB.editPhone}"  icon="ui-icon-zoomin"
+						title="#{i18n['mobilephone_list_button_view']}">
+						<f:param name="action" value="VIEW" />
+						<f:param name="id" value="#{phone.id}" />
+					</p:commandButton>
+					<p:commandButton action="#{phoneViewMB.delete(phone.id)}" update="@form" icon="ui-icon-trash"
+						title="#{i18n['mobilephone_list_button_delete']}">
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<br style="clear: both;" />
+			<p:commandButton label="#{i18n['mobilephone_list_button_new']}"
+				value="#{i18n['mobilephone_list_button_new']}" styleClass="right" ajax="false"
+				action="#{phoneViewMB.editPhone}" icon="ui-icon-document" title="#{i18n['mobilephone_list_button_new']}"></p:commandButton>
+			<br style="clear: both;" />
+		</h:form>
+	</h:body>
+</f:view>

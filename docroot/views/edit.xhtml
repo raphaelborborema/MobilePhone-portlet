@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head />
+	<h:body>
+		<f:view locale="en_US"/>
+		<h:form id="frmId">
+		<p:messages id="messagesId" />
+			<p:outputLabel value="#{i18n['mobilephone_edit_title_add']}"  styleClass="title_box"   rendered="#{phoneEditMB.insertAction}"></p:outputLabel>
+			<p:outputLabel value="#{i18n['mobilephone_edit_title_update']}" styleClass="title_box"  rendered="#{phoneEditMB.updateAction}"></p:outputLabel>
+			<p:outputLabel value="#{i18n['mobilephone_edit_title_view']}"   styleClass="title_box" rendered="#{phoneEditMB.viewAction}"></p:outputLabel>
+			
+			<br style="clear: both;" />
+			
+
+			<p:outputLabel value="#{i18n['mobilephone_edit_field_name']}*" />
+			<p:inputText label="#{i18n['mobilephone_edit_field_name']}" required="TRUE" disabled="#{phoneEditMB.viewAction}" maxlength="75" value="#{phoneEditMB.phone.name}" ></p:inputText>
+			<p:outputLabel value="#{i18n['mobilephone_edit_field_brand']}" />
+			<p:inputText maxlength="75" label="#{i18n['mobilephone_edit_field_brand']}" disabled="#{phoneEditMB.viewAction}" value="#{phoneEditMB.phone.brand}" ></p:inputText>
+			<p:outputLabel value="#{i18n['mobilephone_edit_field_description']}" />
+			<p:inputTextarea maxlength="255" label="#{i18n['mobilephone_edit_field_description']}" disabled="#{phoneEditMB.viewAction}" value="#{phoneEditMB.phone.description}" ></p:inputTextarea>
+			<p:outputLabel value="#{i18n['mobilephone_edit_field_releaseDate']}" />
+			<p:calendar label="#{i18n['mobilephone_edit_field_releaseDate']}" disabled="#{phoneEditMB.viewAction}" value="#{phoneEditMB.phone.releaseDate}" ></p:calendar>
+			<p:outputLabel value="#{i18n['mobilephone_edit_field_price']}" />
+			<p:inputText label="#{i18n['mobilephone_edit_field_price']}" styleClass="JSvalorMoeda" converter="moneyConverter" disabled="#{phoneEditMB.viewAction}" required="true" value="#{phoneEditMB.phone.price}" ></p:inputText>
+
+			<p:toolbar>
+					<p:toolbarGroup  align="right">
+							<p:commandButton id="bt_add" icon="ui-icon-disk"
+								value="#{i18n['mobilephone_edit_button_save']}" rendered="#{!phoneEditMB.viewAction}" title="#{i18n['mobilephone_edit_button_save']}" 
+								action="#{phoneEditMB.save}" ajax="false"/>
+							<p:commandButton id="bt_list" icon="ui-icon-search"
+								value="#{i18n['mobilephone_edit_button_list']}" title="#{i18n['mobilephone_edit_button_save']}"
+								action="#{phoneEditMB.listPhones}" ajax="false" immediate="true">
+							</p:commandButton>
+					</p:toolbarGroup>
+			</p:toolbar>
+		</h:form>
+	</h:body>
+</f:view>
